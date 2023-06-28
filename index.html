@@ -1,27 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
+<html>
+<head>
+    <title>Chessboard</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div id="board">
+        <div class="row">
+            <div class="square light"></div>
+            <div class="square dark"></div>
+            <div class="square light"></div>
+            <div class="square dark"></div>
+            <div class="square light"></div>
+            <div class="square dark"></div>
+            <div class="square light"></div>
+            <div class="square dark"></div>
+        </div>
+        <div class="row">
+            <div class="square dark"></div>
+            <div class="square light"></div>
+            <div class="square dark"></div>
+            <div class="square light"></div>
+            <div class="square dark"></div>
+            <div class="square light">
+              <div id="black-pawn" class="piece black">♟</div>
+            </div>
+            <div class="square dark">
+              <div id="black-pawn" class="piece black">♟</div>
+            </div>
+            <div class="square light">
+              <div id="black-pawn" class="piece black">♟</div>
+            </div>
+        </div>
+        <!-- Add more rows for the complete chessboard -->
+        <div class="row">
+          <div class="square light"></div>
+          <div class="square dark"></div>
+          <div class="square light"></div>
+          <div class="square dark"></div>
+          <div class="square light"></div>
+          <div class="square dark"></div>
+          <div class="square light"></div>
+          <div class="square dark"></div>
+      </div>
+      <div class="row">
+          <div class="square dark"></div>
+          <div class="square light"></div>
+          <div class="square dark"></div>
+          <div class="square light"></div>
+          <div class="square dark"></div>
+          <div class="square light"></div>
+          <div class="square dark"></div>
+          <div class="square light"></div>
+      </div>
+      <div class="row">
+        <div class="square light"></div>
+        <div class="square dark"></div>
+        <div class="square light"></div>
+        <div class="square dark"></div>
+        <div class="square light"></div>
+        <div class="square dark"></div>
+        <div class="square light"></div>
+        <div class="square dark"></div>
+    </div>
+    <div class="row">
+        <div class="square dark"></div>
+        <div class="square light"></div>
+        <div class="square dark"></div>
+        <div class="square light"></div>
+        <div class="square dark"></div>
+        <div class="square light"></div>
+        <div class="square dark"></div>
+        <div class="square light"></div>
+    </div>
+    <div class="row">
+      <div class="square light"></div>
+      <div class="square dark"></div>
+      <div class="square light"></div>
+      <div class="square dark"></div>
+      <div class="square light">
+      </div>
+      <div class="square dark">
+      </div>
+      <div class="square light">
+
+      </div>
+      <div class="square dark">
+        <div id="white-pawn" class="piece white">♙</div>
+      </div>
+  </div>
+  <div class="row">
+      <div class="square dark"></div>
+      <div class="square light"></div>
+      <div class="square dark"></div>
+      <div class="square light"></div>
+      <div class="square dark"></div>
+      <div class="square light"></div>
+      <div class="square dark"></div>
+      <div class="square light"></div>
+  </div>
+
+    </div>
     <script src="main.js"></script>
-    <title>Chess Game</title>
-  </head>
-  <body>
-    <h1>Chess Game</h1>
-    <div class="infoDiv">
-      <label for="turn">Turn: </label>
-      <input type="text" id="turn" value="White" disabled />
-      <label for="winner">Winner: </label>
-      <input type="text" id="winner" value="None" disabled />
-    </div>
-    <div class="board-container">
-      <div class="board" id="chessboard"></div>
-    </div>
-    <div class="buttonsDiv">
-      <button id="startBtn">Start Game</button>
-      <button id="resetBtn">Reset Game</button>
-    </div>
-  </body>
+</body>
 </html>
