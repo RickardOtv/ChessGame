@@ -1,5 +1,21 @@
 body {
   background-color: #87b1eb;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-size: 36px;
+  font-weight: bold;
+  background-color: #cde4ff;
+  color: #222;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
 }
 
 #board {
@@ -7,6 +23,7 @@ body {
   height: 480px;
   display: flex;
   flex-wrap: wrap;
+  margin: 0 auto;
 }
 
 .cell {
@@ -64,4 +81,15 @@ body {
 
 .valid-move {
   background-color: #aaffaa !important;
+}
+
+#status {
+  background-color: #f9f9f9;
+  color: #555;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  width: 240px; /* Adjust the width as per your preference */
+  margin: 40px auto 20px; /* Adjust the top margin as per your preference */
 }
