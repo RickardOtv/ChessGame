@@ -57,3 +57,11 @@ body {
 .black-piece::before {
   color: #000000;
 }
+
+.capture-move {
+  background-color: orange !important;
+}
+
+.valid-move {
+  background-color: #aaffaa !important;
+}
