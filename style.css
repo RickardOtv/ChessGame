@@ -1,3 +1,7 @@
+body {
+  background-color: #87b1eb;
+}
+
 #board {
   width: 480px;
   height: 480px;
@@ -15,14 +19,6 @@
   cursor: pointer;
 }
 
-.white {
-  background-color: #f0d9b5;
-}
-
-.black {
-  background-color: #b58863;
-}
-
 .selected {
   background-color: #87ceeb !important;
 }
@@ -34,4 +30,30 @@
 
 .square-dark {
   background-color: #f0d9b5;
+}
+
+.piece {
+  font-size: 50px;
+}
+
+.white-piece {
+  color: #ffffff;
+}
+
+.black-piece {
+  color: #000000;
+}
+
+/* Custom styling for each piece */
+.piece::before {
+  content: attr(data-piece);
+}
+
+/* Custom styling for each piece color */
+.white-piece::before {
+  color: #ffffff;
+}
+
+.black-piece::before {
+  color: #000000;
 }

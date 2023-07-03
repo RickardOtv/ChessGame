@@ -95,26 +95,55 @@ function updateBoard() {
   const cells = document.getElementsByClassName("cell");
   for (let i = 0; i < 64; i++) {
     const cell = cells[i];
-    cell.textContent = "";
+    cell.innerHTML = "";
     cell.classList.remove("selected");
     const piece = pieces[i];
     if (piece !== "") {
       const pieceElement = document.createElement("span");
-      pieceElement.textContent = piece;
       pieceElement.classList.add("piece");
+
       if (piece === piece.toUpperCase()) {
         pieceElement.classList.add("white-piece");
       } else {
         pieceElement.classList.add("black-piece");
       }
+      pieceElement.setAttribute("data-piece", getPieceUnicode(piece));
       cell.appendChild(pieceElement);
     }
+  }
+}
+
+function getPieceUnicode(piece) {
+  switch (piece.toLowerCase()) {
+    case "r":
+      return "\u2656"; // White Rook
+    case "n":
+      return "\u2658"; // White Knight
+    case "b":
+      return "\u2657"; // White Bishop
+    case "q":
+      return "\u2655"; // White Queen
+    case "k":
+      return "\u2654"; // White King
+    case "p":
+      return "\u2659"; // White Pawn
+    default:
+      return "";
   }
 }
 
 function handleCellClick() {
   const index = Array.from(this.parentNode.children).indexOf(this);
   const piece = pieces[index];
+
+  // Deselect the piece if the same piece is clicked again
+  if (selectedPiece === piece) {
+    selectedPiece = null;
+    selectedCell.classList.remove("selected");
+    selectedCell = null;
+    return;
+  }
+
   if (selectedPiece === null) {
     if (
       piece !== "" &&
@@ -127,26 +156,33 @@ function handleCellClick() {
       this.classList.add("selected");
     }
   } else {
-    if (selectedCell === this) {
-      // Deselect the piece
-      selectedPiece = null;
-      selectedCell.classList.remove("selected");
-    } else {
-      const isValidMove = validateMove(selectedCell, this);
-      if (isValidMove) {
-        const sourceIndex = Array.from(
-          selectedCell.parentNode.children
-        ).indexOf(selectedCell);
-        const targetIndex = index;
-        pieces[targetIndex] = selectedPiece;
-        pieces[sourceIndex] = "";
-        isWhiteTurn = !isWhiteTurn;
+    const isValidMove = validateMove(selectedCell, this);
+    if (isValidMove) {
+      const sourceIndex = Array.from(selectedCell.parentNode.children).indexOf(
+        selectedCell
+      );
+      const targetIndex = index;
+      const targetPiece = pieces[targetIndex];
+
+      // Check if target cell has a friendly piece
+      if (
+        targetPiece !== "" &&
+        ((isWhiteTurn && targetPiece === targetPiece.toUpperCase()) ||
+          (!isWhiteTurn && targetPiece === targetPiece.toLowerCase()))
+      ) {
         selectedPiece = null;
         selectedCell.classList.remove("selected");
-        updateBoard();
-        updateCapturedPieces();
-        updateStatus();
+        return;
       }
+
+      pieces[targetIndex] = selectedPiece;
+      pieces[sourceIndex] = "";
+      isWhiteTurn = !isWhiteTurn;
+      selectedPiece = null;
+      selectedCell.classList.remove("selected");
+      updateBoard();
+      updateCapturedPieces();
+      updateStatus();
     }
   }
 }
@@ -177,9 +213,10 @@ function validateMove(sourceCell, targetCell) {
       if (targetRow === sourceRow + direction) {
         return true;
       } else if (
-        sourceRow === 1 &&
-        targetRow === 3 &&
-        pieces[sourceIndex + 8] === ""
+        ((isWhiteTurn && sourceRow === 6) ||
+          (!isWhiteTurn && sourceRow === 1)) &&
+        targetRow === sourceRow + 2 * direction &&
+        pieces[sourceIndex + 8 * direction] === ""
       ) {
         return true;
       }
