@@ -1,27 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
-    <script src="main.js"></script>
     <title>Chess Game</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
-    <h1>Chess Game</h1>
-    <div class="infoDiv">
-      <label for="turn">Turn: </label>
-      <input type="text" id="turn" value="White" disabled />
-      <label for="winner">Winner: </label>
-      <input type="text" id="winner" value="None" disabled />
-    </div>
-    <div class="board-container">
-      <div class="board" id="chessboard"></div>
-    </div>
-    <div class="buttonsDiv">
-      <button id="startBtn">Start Game</button>
-      <button id="resetBtn">Reset Game</button>
-    </div>
+    <div id="board"></div>
+    <div id="captured-pieces"></div>
+    <div id="status"></div>
+    <script src="script.js"></script>
   </body>
 </html>
